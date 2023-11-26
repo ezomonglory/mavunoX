@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+html, body{
+    font-family: 'neue_montrealregular';
+}
+
+@font-face {
+    font-family: 'neue_montrealbold';
+    src: url('../fonts/neuemontreal-bold-webfont.woff2') format('woff2'),
+         url('../fonts/neuemontreal-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.neue700{
+    font-family: 'neue_montrealbold';
+}
+
+
+
+
+@font-face {
+    font-family: 'neue_montrealbold_italic';
+    src: url('../fonts/neuemontreal-bolditalic-webfont.woff2') format('woff2'),
+         url('../fonts/neuemontreal-bolditalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'neue_montrealitalic';
+    src: url('../fonts/neuemontreal-italic-webfont.woff2') format('woff2'),
+         url('../fonts/neuemontreal-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'neue_montreallight';
+    src: url('../fonts/neuemontreal-light-webfont.woff2') format('woff2'),
+         url('../fonts/neuemontreal-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'neue_montreallight_italic';
+    src: url('../fonts/neuemontreal-lightitalic-webfont.woff2') format('woff2'),
+         url('../fonts/neuemontreal-lightitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'neue_montrealmedium';
+    src: url('../fonts/neuemontreal-medium-webfont.woff2') format('woff2'),
+         url('../fonts/neuemontreal-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.neue500{
+    font-family: 'neue_montrealmedium';
+}
+
+
+@font-face {
+    font-family: 'neue_montrealmedium_italic';
+    src: url('../fonts/neuemontreal-mediumitalic-webfont.woff2') format('woff2'),
+         url('../fonts/neuemontreal-mediumitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'neue_montrealregular';
+    src: url('../fonts/neuemontreal-regular-webfont.woff2') format('woff2'),
+         url('../fonts/neuemontreal-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.neue400{
+    font-family: 'neue_montrealregular';
+}
+
+
+select {
+	/* Remove default arrow in Firefox */
+	-moz-appearance: none;
+	/* Remove default arrow in Chrome and Safari */
+	-webkit-appearance: none;
+	/* Remove default arrow in IE and Edge */
+	appearance: none;
+
+	/* Add your additional styling here */
+}
+
+/* styles.css */
+
+/* Custom styles for the date picker container */
+.custom-date-picker {
+	position: relative;
+	display: inline-block;
+}
+
+/* Style the input element */
+.custom-date-picker input[type="date"] {
+	/* Your custom styling for the date input */
+	/* Example: */
+	padding: 0.5rem;
+	border: 1px solid #ccc;
+	border-radius: 0.25rem;
+	outline: none;
+}
+
+/* Style the container for cancel and apply buttons */
+.custom-date-picker .button-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 0.5rem;
+}
+
+/* Style the cancel and apply buttons */
+.custom-date-picker .button-container button {
+	/* Your custom styling for the buttons */
+	/* Example: */
+	padding: 0.25rem 0.5rem;
+	background-color: #3490dc;
+	color: #fff;
+	border: none;
+	border-radius: 0.25rem;
+	cursor: pointer;
+}
+
+/* Style the selected date */
+.custom-date-picker input[type="date"]:valid {
+	/* Your custom styling for the selected date */
+	/* Example: */
+	color: green;
+}
+
+.scroll-hidden::-webkit-scrollbar {
+	display: none;
+}
+
+@keyframes moveleft {
+	0% {
+		transform: translateX(-100%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@media (max-width: 899px) {
+	.overlay {
+		display: block;
+	}
+	.sidebar {
+		transform: translateX(-100%);
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 100;
+	}
+
+	.sidebarMove {
+		animation: moveleft 0.5s ease-in;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 100;
+	}
+
+	.Xicon {
+		display: block;
+	}
+
+	.menu {
+		display: flex;
+	}
+	.layout {
+		display: block;
+	}
+	.padd {
+		padding-top: 24px;
+	}
+}
