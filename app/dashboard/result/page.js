@@ -154,10 +154,10 @@ const Page = () => {
 	const getHarvestDate = (season, duration) => {
 		const currentDate = new Date();
 		let harvestYear = currentDate.getFullYear();
-        let dateObj = {
-            start:'',
-            end:''
-        }
+		let dateObj = {
+			start: "",
+			end: "",
+		};
 
 		console.log("hey");
 		const seasonMonths = {
@@ -186,25 +186,25 @@ const Page = () => {
 			console.log(seasonMonths[season]);
 			console.log(seasonMonths[season][0]);
 			console.log(seasonMonths[season][2]);
-            if (season === "spring") {
-                console.log("start", ":", `${next}-02-01`);
-                console.log("end", ":", `${next}-04-31`);
-                dateObj.start = `${next}-02-01`
-                dateObj.end = `${next}-04-31`
-                return dateObj
-            }
-            if (season === "summer") {
-                console.log("start", ":", `${next}-05-01`);
-                console.log("end", ":", `${next}-07-31`);
-            }
-            if (season === "rainy") {
-                console.log("start", ":", `${next}-08-01`);
-                console.log("end", ":", `${next}-10-30`);
-            }
-            if (season === "winter") {
-                console.log("start", ":", `${next}-11-01`);
-                console.log("end", ":", `${next + 1}-0-31`);
-            }
+			if (season === "spring") {
+				console.log("start", ":", `${next}-02-01`);
+				console.log("end", ":", `${next}-04-31`);
+				dateObj.start = `${next}-02-01`;
+				dateObj.end = `${next}-04-31`;
+				return dateObj;
+			}
+			if (season === "summer") {
+				console.log("start", ":", `${next}-05-01`);
+				console.log("end", ":", `${next}-07-31`);
+			}
+			if (season === "rainy") {
+				console.log("start", ":", `${next}-08-01`);
+				console.log("end", ":", `${next}-10-30`);
+			}
+			if (season === "winter") {
+				console.log("start", ":", `${next}-11-01`);
+				console.log("end", ":", `${next + 1}-0-31`);
+			}
 
 			// return
 		} else {
@@ -213,9 +213,9 @@ const Page = () => {
 			const newda = new Date(currentDate);
 			// duration is entering here
 			newda.setDate(currentDate.getDate() + duration);
-			const durationDate = new Date(newda);            
+			const durationDate = new Date(newda);
 			const durationyear = durationDate.getFullYear();
-            console.log(durationyear)
+			console.log(durationyear);
 			const durationmonth = durationDate.getMonth();
 			console.log(durationDate.getMonth(), durationyear);
 			getSeason(durationmonth);
@@ -240,7 +240,7 @@ const Page = () => {
 						console.log(seasonMonths[seasons]);
 						console.log(seasonMonths[seasons][0]);
 						console.log(seasonMonths[seasons][2]);
-                        let lastday;
+						let lastday;
 						// if (season === seasons) {
 						// 	console.log(seasonMonths[seasons][2]);
 						// 	// start date
@@ -255,8 +255,8 @@ const Page = () => {
 						// 	} else {
 						// 		console.log("hhu");
 						// 		console.log(seasonMonths[seasons][2]);
-								
-                        //         lastday = getLastDayOfMonth(
+
+						//         lastday = getLastDayOfMonth(
 						// 			newda.getFullYear(),
 						// 			seasonMonths[seasons][2]
 						// 		);
@@ -280,8 +280,8 @@ const Page = () => {
 						// 		return lastDayOfMonth;
 						// 	}
 
-                        //     console.log("start", ":", newda.toISOString().slice(0, 10));
-                        //     console.log("end", ":", lastday.Fform);
+						//     console.log("start", ":", newda.toISOString().slice(0, 10));
+						//     console.log("end", ":", lastday.Fform);
 						// 	return;
 						// }
 						if (seasons === "spring") {
@@ -562,32 +562,101 @@ const Page = () => {
 					</div>
 					<div className='w-full hidden md:block'>
 						<LabelledContainer header='Recommendations'>
-							<Recommendations header='pH Scale'>
-								<div className='flex flex-col space-y-[8px]'>
-									<h1 className='text-[#5B5B5B] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
-										The optimal pH range is within{" "}
-										<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
-											{" "}
-											{parseFloat(data?.exp_ph.min.toFixed(2))} -{" "}
-											{parseFloat(data?.exp_ph.max.toFixed(2))}{" "}
-										</span>{" "}
-										and your pH value is{" "}
-										<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
-											{parseFloat(data?.ph.toFixed(2))}
-										</span>
-									</h1>
-									<div
-										className='block  border border-[#049600] rounded-[8px] flex items-center justify-center py-[8px] px-[12px] cursor-pointer '
-										onClick={() => {
-											setShowRecModal(true);
-										}}
-									>
-										<h1 className='text-[#049600] text-[16px] neue400 leading-[28px] tracking-[-0.16px] '>
-											Get Recommendation
+							<div className='flex space-y-[24px] flex-col'>
+								<Recommendations header='pH Scale'>
+									<div className='flex flex-col space-y-[8px]'>
+										<h1 className='text-[#5B5B5B] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+											The optimal pH range is within{" "}
+											<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+												{" "}
+												{parseFloat(data?.exp_ph.min.toFixed(2))} -{" "}
+												{parseFloat(data?.exp_ph.max.toFixed(2))}{" "}
+											</span>{" "}
+											and your pH value is{" "}
+											<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+												{parseFloat(data?.ph.toFixed(2))}
+											</span>
 										</h1>
+										<div
+											className='block  border border-[#049600] rounded-[8px] flex items-center justify-center py-[8px] px-[12px] cursor-pointer '
+											onClick={() => {
+												setShowRecModal(true);
+											}}
+										>
+											<h1 className='text-[#049600] text-[16px] neue400 leading-[28px] tracking-[-0.16px] '>
+												Get Recommendation
+											</h1>
+										</div>
 									</div>
-								</div>
-							</Recommendations>
+								</Recommendations>
+								{secondData && (
+									<>
+										{" "}
+										<Recommendations header='Temperature'>
+											<div className='flex flex-col space-y-[8px]'>
+												<h1 className='text-[#5B5B5B] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+													The optimal temperature range is within{" "}
+													<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+														{" "}
+														{parseFloat(
+															secondData?.exp_temperature.min.toFixed(2),
+														)}{" "}
+														-{" "}
+														{parseFloat(
+															secondData?.exp_temperature.max.toFixed(2),
+														)}{" "}
+													</span>{" "}
+													and your temperature value is{" "}
+													<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+														{parseFloat(secondData?.temperature.toFixed(2))}
+													</span>
+												</h1>
+												<div
+													className='block  border border-[#049600] rounded-[8px] flex items-center justify-center py-[8px] px-[12px] cursor-pointer '
+													onClick={() => {
+														setShowRecModal(true);
+													}}
+												>
+													<h1 className='text-[#049600] text-[16px] neue400 leading-[28px] tracking-[-0.16px] '>
+														Get Recommendation
+													</h1>
+												</div>
+											</div>
+										</Recommendations>
+										<Recommendations header='Humidity'>
+											<div className='flex flex-col space-y-[8px]'>
+												<h1 className='text-[#5B5B5B] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+													The optimal pH range is within{" "}
+													<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+														{" "}
+														{parseFloat(
+															secondData?.exp_humidity.min.toFixed(2),
+														)}{" "}
+														-{" "}
+														{parseFloat(
+															secondData?.exp_humidity.max.toFixed(2),
+														)}{" "}
+													</span>{" "}
+													and your pH value is{" "}
+													<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+														{parseFloat(secondData?.humidity.toFixed(2))}
+													</span>
+												</h1>
+												<div
+													className='block  border border-[#049600] rounded-[8px] flex items-center justify-center py-[8px] px-[12px] cursor-pointer '
+													onClick={() => {
+														setShowRecModal(true);
+													}}
+												>
+													<h1 className='text-[#049600] text-[16px] neue400 leading-[28px] tracking-[-0.16px] '>
+														Get Recommendation
+													</h1>
+												</div>
+											</div>
+										</Recommendations>
+									</>
+								)}
+							</div>
 						</LabelledContainer>
 					</div>
 

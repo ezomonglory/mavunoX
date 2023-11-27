@@ -20,21 +20,21 @@ export default function DatePickers({ handleDate, season }) {
 
 	const getSeasonDates = (season) => {
 		if (season === "winter" || season === "Winter") {
-			start = dayjs(now.year() + "-12-01"); // Winter starts on December 1st
-			end = dayjs(now.year() + "-02-28"); // Winter ends on February 28th (or 29th for a leap year)
+			start = dayjs("2024" + "-12-01"); // Winter starts on December 1st
+			end = dayjs("2024" + "-02-28"); // Winter ends on February 28th (or 29th for a leap year)
 		} else if (season === "spring" || season === "Spring") {
-			start = dayjs(now.year() + "-03-01"); // Spring starts on March 1st
-			end = dayjs(now.year() + "-05-31"); // Spring ends on May 31st
+			start = dayjs("2024" + "-03-01"); // Spring starts on March 1st
+			end = dayjs("2024" + "-05-31"); // Spring ends on May 31st
 		} else if (season === "summer" || season === "Summer") {
-			start = dayjs(now.year() + "-06-01"); // Summer starts on June 1st
-			end = dayjs(now.year() + "-08-31"); // Summer ends on August 31st
+			start = dayjs("2024" + "-06-01"); // Summer starts on June 1st
+			end = dayjs("2024" + "-08-31"); // Summer ends on August 31st
 		} else if (season === "rain" || season === "Rain") {
-			start = dayjs(now.year() + "-09-01"); // Fall starts on September 1st
-			end = dayjs(now.year() + "-11-30"); // Fall ends on November 30th
+			start = dayjs("2024" + "-09-01"); // Fall starts on September 1st
+			end = dayjs("2024" + "-11-30"); // Fall ends on November 30th
 		} else {
 			// Default to a full year if the season is not recognized
-			start = dayjs(now.year() + "-01-01");
-			end = dayjs(now.year() + "-12-31");
+			start = dayjs("2024" + "-01-01");
+			end = dayjs("2024" + "-12-31");
 		}
 
 		return { start, end };
