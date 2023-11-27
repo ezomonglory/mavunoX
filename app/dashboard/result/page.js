@@ -36,67 +36,67 @@ const Page = () => {
 	const now = dayjs();
 	let start, end;
 
-	const getHarvestDateRange = (season, durationDays) => {
-		const now = dayjs();
-		let start, end;
+	// const getHarvestDateRange = (season, durationDays) => {
+	// 	const now = dayjs();
+	// 	let start, end;
 
-		// Get the start date for the specified season in the current year
-		if (season === "winter") {
-			start = dayjs(now.year(), "12-01"); // Winter starts on December 1st
-		} else if (season === "spring") {
-			start = dayjs(now.year(), "03-01"); // Spring starts on March 1st
-		} else if (season === "summer") {
-			start = dayjs(now.year(), "06-01"); // Summer starts on June 1st
-		} else if (season === "fall") {
-			start = dayjs(now.year(), "09-01"); // Fall starts on September 1st
-		} else {
-			throw new Error("Invalid season");
-		}
+	// 	// Get the start date for the specified season in the current year
+	// 	if (season === "winter") {
+	// 		start = dayjs(now.year(), "12-01"); // Winter starts on December 1st
+	// 	} else if (season === "spring") {
+	// 		start = dayjs(now.year(), "03-01"); // Spring starts on March 1st
+	// 	} else if (season === "summer") {
+	// 		start = dayjs(now.year(), "06-01"); // Summer starts on June 1st
+	// 	} else if (season === "fall") {
+	// 		start = dayjs(now.year(), "09-01"); // Fall starts on September 1st
+	// 	} else {
+	// 		throw new Error("Invalid season");
+	// 	}
 
-		// If the current month is after the last month of the season, adjust to the next year
-		if (now.isAfter(dayjs(start).endOf("month"))) {
-			start = start.add(1, "year");
-		}
+	// 	// If the current month is after the last month of the season, adjust to the next year
+	// 	if (now.isAfter(dayjs(start).endOf("month"))) {
+	// 		start = start.add(1, "year");
+	// 	}
 
-		// Calculate the end date based on the start date and crop duration
-		end = dayjs(start).endOf("month");
+	// 	// Calculate the end date based on the start date and crop duration
+	// 	end = dayjs(start).endOf("month");
 
-		// Check if the current month is within the season
-		if (now.isBefore(dayjs(start).endOf("month"))) {
-			// Calculate the minimum harvest date (current day + duration)
-			const minHarvestDate = now.add(durationDays, "day");
+	// 	// Check if the current month is within the season
+	// 	if (now.isBefore(dayjs(start).endOf("month"))) {
+	// 		// Calculate the minimum harvest date (current day + duration)
+	// 		const minHarvestDate = now.add(durationDays, "day");
 
-			// Check if the minimum harvest date is after the end of the season
-			if (minHarvestDate.isAfter(end)) {
-				// Return the range for the next occurrence of the season
-				console.log(
-					"Harvest date range:",
-					start.format("YYYY-MM-DD"),
-					"to",
-					end.format("YYYY-MM-DD"),
-				);
-				return getHarvestDateRange(season, durationDays).start.add(1, "year");
-			}
+	// 		// Check if the minimum harvest date is after the end of the season
+	// 		if (minHarvestDate.isAfter(end)) {
+	// 			// Return the range for the next occurrence of the season
+	// 			console.log(
+	// 				"Harvest date range:",
+	// 				start.format("YYYY-MM-DD"),
+	// 				"to",
+	// 				end.format("YYYY-MM-DD"),
+	// 			);
+	// 			return getHarvestDateRange(season, durationDays).start.add(1, "year");
+	// 		}
 
-			// Return the range from the current day to the end of the month
-			console.log(
-				"Harvest date range:",
-				start.format("YYYY-MM-DD"),
-				"to",
-				end.format("YYYY-MM-DD"),
-			);
-			return { start: now, end: end };
-		} else {
-			// Return the range for the next occurrence of the season
-			console.log(
-				"Harvest date range:",
-				start.format("YYYY-MM-DD"),
-				"to",
-				end.format("YYYY-MM-DD"),
-			);
-			return getHarvestDateRange(season, durationDays).start.add(1, "year");
-		}
-	};
+	// 		// Return the range from the current day to the end of the month
+	// 		console.log(
+	// 			"Harvest date range:",
+	// 			start.format("YYYY-MM-DD"),
+	// 			"to",
+	// 			end.format("YYYY-MM-DD"),
+	// 		);
+	// 		return { start: now, end: end };
+	// 	} else {
+	// 		// Return the range for the next occurrence of the season
+	// 		console.log(
+	// 			"Harvest date range:",
+	// 			start.format("YYYY-MM-DD"),
+	// 			"to",
+	// 			end.format("YYYY-MM-DD"),
+	// 		);
+	// 		return getHarvestDateRange(season, durationDays).start.add(1, "year");
+	// 	}
+	// };
 
 	function calculateHarvestDate(season, duration) {
 		const currentDate = new Date();
@@ -154,8 +154,12 @@ const Page = () => {
 	const getHarvestDate = (season, duration) => {
 		const currentDate = new Date();
 		let harvestYear = currentDate.getFullYear();
+        let dateObj = {
+            start:'',
+            end:''
+        }
 
-        console.log("hey")
+		console.log("hey");
 		const seasonMonths = {
 			spring: [2, 3, 4],
 			summer: [5, 6, 7],
@@ -163,21 +167,145 @@ const Page = () => {
 			winter: [11, 12, 13],
 		};
 
-        let month;
+		let month;
 		const currentMonth = currentDate.getMonth();
-        if(currentMonth === 0){
-            month = 12
-        } else if (currentMonth === 1){
-            month = 13 
-        } else {
-            month = currentMonth
-        }
-        console.log(month + "month")
-        console.log(seasonMonths[season][seasonMonths[season].length - 1])
+		if (currentMonth === 0) {
+			month = 12;
+		} else if (currentMonth === 1) {
+			month = 13;
+		} else {
+			month = currentMonth;
+		}
+		console.log(month + "month");
+		console.log(seasonMonths[season][seasonMonths[season].length - 1]);
+		// This function is returning if its in season it returns this year if the seaon has passed it return next year
 		if (month > seasonMonths[season][seasonMonths[season].length - 1]) {
-			// If the current month is beyond the specified season, move to the next year            
+			// If the current month is beyond the specified season, move to the next year
 			const next = harvestYear + 1;
-            console.log(next)
+			console.log(next);
+			console.log(seasonMonths[season]);
+			console.log(seasonMonths[season][0]);
+			console.log(seasonMonths[season][2]);
+            if (season === "spring") {
+                console.log("start", ":", `${next}-02-01`);
+                console.log("end", ":", `${next}-04-31`);
+                dateObj.start = `${next}-02-01`
+                dateObj.end = `${next}-04-31`
+                return dateObj
+            }
+            if (season === "summer") {
+                console.log("start", ":", `${next}-05-01`);
+                console.log("end", ":", `${next}-07-31`);
+            }
+            if (season === "rainy") {
+                console.log("start", ":", `${next}-08-01`);
+                console.log("end", ":", `${next}-10-30`);
+            }
+            if (season === "winter") {
+                console.log("start", ":", `${next}-11-01`);
+                console.log("end", ":", `${next + 1}-0-31`);
+            }
+
+			// return
+		} else {
+			// if current month is within the season or it hasnt reach its season yet it comes here
+			console.log(seasonMonths[season]);
+			const newda = new Date(currentDate);
+			// duration is entering here
+			newda.setDate(currentDate.getDate() + duration);
+			const durationDate = new Date(newda);            
+			const durationyear = durationDate.getFullYear();
+            console.log(durationyear)
+			const durationmonth = durationDate.getMonth();
+			console.log(durationDate.getMonth(), durationyear);
+			getSeason(durationmonth);
+
+			function getSeason(monthNumber) {
+				// Ensure the monthNumber is within a valid range (0 to 11)
+				let newmonth;
+				if (monthNumber === 0) {
+					newmonth = 12;
+				} else if (monthNumber === 1) {
+					newmonth = 13;
+				} else {
+					newmonth = monthNumber;
+				}
+
+				console.log(newmonth);
+
+				// Iterate through seasons and check if the monthNumber is in any of them
+				for (const [seasons, months] of Object.entries(seasonMonths)) {
+					if (months.includes(newmonth)) {
+						console.log(seasons);
+						console.log(seasonMonths[seasons]);
+						console.log(seasonMonths[seasons][0]);
+						console.log(seasonMonths[seasons][2]);
+                        let lastday;
+						// if (season === seasons) {
+						// 	console.log(seasonMonths[seasons][2]);
+						// 	// start date
+						// 	console.log(newda.toISOString().slice(0, 10));
+						// 	// end date
+						// 	console.log(seasonMonths[seasons][2]);
+
+						// 	if (seasonMonths[seasons][2] === 12) {
+						// 		lastday = getLastDayOfMonth(newda.getFullYear(), 0);
+						// 	} else if (seasonMonths[seasons][2] === 13) {
+						// 		lastday = getLastDayOfMonth(newda.getFullYear(), 1);
+						// 	} else {
+						// 		console.log("hhu");
+						// 		console.log(seasonMonths[seasons][2]);
+								
+                        //         lastday = getLastDayOfMonth(
+						// 			newda.getFullYear(),
+						// 			seasonMonths[seasons][2]
+						// 		);
+						// 	}
+
+						// 	function getLastDayOfMonth(year, month) {
+						// 		console.log(month);
+						// 		// Ensure the month is within a valid range (0 to 11)
+						// 		if (month < 0 || month > 11) {
+						// 			throw new Error("Invalid month");
+						// 		}
+
+						// 		// Create a Date object for the first day of the next month
+						// 		const firstDayOfNextMonth = new Date(year, month + 1, 1);
+
+						// 		// Subtract one day to get the last day of the specified month
+						// 		const lastDayOfMonth = new Date(firstDayOfNextMonth);
+						// 		lastDayOfMonth.setDate(lastDayOfMonth.getDate() - 1);
+
+						// 		console.log(lastDayOfMonth);
+						// 		return lastDayOfMonth;
+						// 	}
+
+                        //     console.log("start", ":", newda.toISOString().slice(0, 10));
+                        //     console.log("end", ":", lastday.Fform);
+						// 	return;
+						// }
+						if (seasons === "spring") {
+							console.log("start", ":", `${durationyear}-02-01`);
+							console.log("end", ":", `${durationyear}-04-31`);
+						}
+						if (seasons === "summer") {
+							console.log("start", ":", `${durationyear}-05-01`);
+							console.log("end", ":", `${durationyear}-07-31`);
+						}
+						if (seasons === "rainy") {
+							console.log("start", ":", `${durationyear}-08-01`);
+							console.log("end", ":", `${durationyear}-10-30`);
+						}
+						if (seasons === "winter") {
+							console.log("start", ":", `${durationyear}-11-01`);
+							console.log("end", ":", `${durationyear + 1}-1-31`);
+						}
+					}
+				}
+			}
+			// if(durationDate.getMonth() > month ){
+			//     console.log("hheusd")
+			// }
 		}
 	};
 
@@ -265,7 +393,7 @@ const Page = () => {
 					text='cli'
 					handleClick={() => {
 						console.log("Calll");
-                        getHarvestDate('summer', 10)
+						getHarvestDate("summer", 75);
 						// const harvestDateRange = getHarvestDate("rainy", 10);
 						// console.log(harvestDateRange);
 					}}

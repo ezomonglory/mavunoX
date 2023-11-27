@@ -97,7 +97,7 @@ const Page = () => {
 							<h1 className='text-[#141414] neue500 leading-[46px] tracking-[-0.5px] text-[30px] md:text-[38px] '>
 								Create an account
 							</h1>
-							<h2 className='text-[#373737] text-[16px] neue400 tracking-[-0.5px] leading-[24px]'>
+							<h2 className='text-[#373737] text-[16px] neue500 tracking-[-0.5px] leading-[24px]'>
 								{" "}
 								Welcome, lets get started.{" "}
 							</h2>

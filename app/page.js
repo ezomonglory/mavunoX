@@ -77,7 +77,7 @@ const Page = () => {
 				</div>
 			</div>
 
-			<div className=' w-full md:w-[50%] px-[16px] md:px-[42px] xl:px-[120px] '>
+			<div className=' w-full md:w-[50%] px-[16px] md:px-[42px] xl:px-[120px] mt-[-50px] '>
 				<div className='flex flex-col space-y-[24px]'>
 					<img src='/images/logo.svg' className='w-[111px] md:w-[154px] ' />
 

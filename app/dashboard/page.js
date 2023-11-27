@@ -80,7 +80,7 @@ const Page = () => {
 					<div>
 						{/* This is for the mobile when clicking on the info icon */}
 						{showInfo && (
-							<div className='bg-[#FCF1E9] rounded-[6px] py-[8px] px-[16px] absolute w-fit top-2 mx-auto sm:hidden border border-[#8B4513] left-0 '>
+							<div className='bg-[#FCF1E9] rounded-[6px] py-[8px] px-[16px] absolute w-fit top-2 mx-auto sm:hidden border border-[#8B4513] left-0  '>
 								<h1 className='text-[#8B4513] text-[16px] leading-[24px] tracking-[-0.1px] neue400 '>
 									Embrace the winter magic,{" "}
 									<span className='capitalize'>{userData?.fullname}</span>! It

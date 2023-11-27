@@ -36,23 +36,56 @@ function createData(name, plantingTime, harvestTime, Status) {
 	return { name, plantingTime, harvestTime, Status };
 }
 
-const rows = [
-	createData("India", "IN", 1324171354, "In Progress"),
-	createData("China", "CN", 1403500365, "Completed"),
-	createData("Italy", "IT", 60483973, "Upcoming"),
-	createData("United States", "US", 327167434, "Upcoming"),
-	createData("Canada", "CA", 37602103, "Completed"),
-	createData("Australia", "AU", 25475400, "In Progress"),
-	createData("Germany", "DE", 83019200, "Upcoming"),
-	createData("Ireland", "IE", 4857000, "Upcoming"),
-	createData("Mexico", "MX", 126577691, "In Progress"),
-	createData("Japan", "JP", 126317000, "Upcoming"),
-	createData("France", "FR", 67022000, "Completed"),
-	createData("United Kingdom", "GB", 67545757, "Completed"),
-	createData("Russia", "RU", 146793744, "In Progress"),
-	createData("Nigeria", "NG", 200962417, "Completed"),
-	createData("Brazil", "BR", 210147125, "Upcoming"),
+const cropData = [
+	{
+		name: "Rice",
+		plantingTime: "25, May 2024",
+		harvestTime: "29, Aug 2024",
+		status: "Upcoming",
+	},
+	{
+		name: "Watermelon",
+		plantingTime: "23, Sep 2024",
+		harvestTime: "29, Dec 2024",
+		status: "Completed",
+	},
+	{
+		name: "Maize",
+		plantingTime: "04, Jan 2024",
+		harvestTime: "23, Apr 2024",
+		status: "In Progress",
+	},
+	{
+		name: "Lentil",
+		plantingTime: "19, Jun 2024",
+		harvestTime: "26, Sep 2024",
+		status: "Upcoming",
+	},
+	{
+		name: "Kidney Beans",
+		plantingTime: "10, Jul 2024",
+		harvestTime: "27, Oct 2024",
+		status: "Completed",
+	},
+	{
+		name: "Jute",
+		plantingTime: "20, Feb 2024",
+		harvestTime: "18, Jun 2024",
+		status: "Upcoming",
+	},
+	{
+		name: "Cotton",
+		plantingTime: "05, Apr 2024",
+		harvestTime: "24, Jul 2024",
+		status: "Completed",
+	},
 ];
+
+const rows = [];
+
+cropData.forEach((data) => {
+	rows.push(createData(data.name, data.plantingTime, data.harvestTime, data.status));
+});
 
 export default function StickyHeadTable() {
 	const [page, setPage] = React.useState(0);
