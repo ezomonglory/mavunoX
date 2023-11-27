@@ -21,6 +21,7 @@ import Link from "next/link";
 import { calculatePlantingDate, formatDate, getSeason } from "@/functions";
 import GradientProgressBar from "@/components/GradientProgressBar";
 import RecMobile from "./RecMobile";
+import RecModal from "./RecModal";
 
 const Page = () => {
 	const [data, setData] = useState();
@@ -30,6 +31,7 @@ const Page = () => {
 	const [plantingDate, setPlantingDate] = useState();
 	const [harvestDate, setHarvestDate] = useState();
 	const [showRecMobile, setShowRecMobile] = useState(false);
+    const [showRecModal, setShowRecModal] = useState(false)
 
 	useEffect(() => {
 		const phdata = JSON.parse(window.localStorage.getItem("phData"));
@@ -276,17 +278,22 @@ const Page = () => {
 						<LabelledContainer header='Recommendations'>
 							<Recommendations header='pH Scale'>
 								<div className='flex flex-col space-y-[8px]'>
-									<h1 className='text-[#5B5B5B] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>The optimal pH range is within{" "}
-									<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
-										{" "}
-										{parseFloat(data?.exp_ph.min.toFixed(2))} -{" "}
-										{parseFloat(data?.exp_ph.max.toFixed(2))}{" "}
-									</span>{" "}
-									and your pH value is {parseFloat(data?.ph.toFixed(2))}</h1>
+									<h1 className='text-[#5B5B5B] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+										The optimal pH range is within{" "}
+										<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+											{" "}
+											{parseFloat(data?.exp_ph.min.toFixed(2))} -{" "}
+											{parseFloat(data?.exp_ph.max.toFixed(2))}{" "}
+										</span>{" "}
+										and your pH value is{" "}
+										<span className='text-[#141414] neue500 text-[14px] leading-[22px] tracking-[-0.2px] '>
+											{parseFloat(data?.ph.toFixed(2))}
+										</span>
+									</h1>
 									<div
 										className='block  border border-[#049600] rounded-[8px] flex items-center justify-center py-[8px] px-[12px] cursor-pointer '
 										onClick={() => {
-											// setShowRecMobile(true);
+											setShowRecModal(true)
 										}}
 									>
 										<h1 className='text-[#049600] text-[16px] neue400 leading-[28px] tracking-[-0.16px] '>
@@ -302,6 +309,7 @@ const Page = () => {
 					{/* <GradientProgressBar percentage={40} /> */}
 				</div>
 			</div>
+            {showRecModal && (<RecModal setShowRecModal={setShowRecModal} />)}
 			{loader && <Loader />}
 		</div>
 	);

@@ -24,10 +24,10 @@ const Sidebar = ({ show, setShow, weather }) => {
 
 			<div className='flex space-y-[20px] flex-col mt-[40px] '>
 				<SidebarNav text='Dashboard' href='/dashboard' />
-				<SidebarNav text='Chatbot' href='/dashboard/chatbot' />
+				<SidebarNav text='Chatbot' href='/dashboard' />
 				<SidebarNav text='My Profile' href='/dashboard/profile' />
-				<SidebarNav text='Settings' href='/dashboard/settings' />
-				<SidebarNav text='Help and Support' href='/dashboard/help' />
+				<SidebarNav text='Settings' href='/dashboard' />
+				<SidebarNav text='Help and Support' href='/dashboard' />
 			</div>
 		</div>
        </div>
