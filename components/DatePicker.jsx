@@ -19,16 +19,16 @@ export default function DatePickers({ handleDate, season }) {
 	let start, end;    
 
 	const getSeasonDates = (season) => {
-		if (season === "winter") {
+		if (season === "winter" || season === "Winter") {
 			start = dayjs(now.year() + "-12-01"); // Winter starts on December 1st
 			end = dayjs(now.year() + "-02-28"); // Winter ends on February 28th (or 29th for a leap year)
-		} else if (season === "spring") {
+		} else if (season === "spring" || season === "Spring") {
 			start = dayjs(now.year() + "-03-01"); // Spring starts on March 1st
 			end = dayjs(now.year() + "-05-31"); // Spring ends on May 31st
-		} else if (season === "summer") {
+		} else if (season === "summer" || season === "Summer") {
 			start = dayjs(now.year() + "-06-01"); // Summer starts on June 1st
 			end = dayjs(now.year() + "-08-31"); // Summer ends on August 31st
-		} else if (season === "fall") {
+		} else if (season === "rain" || season === "Rain") {
 			start = dayjs(now.year() + "-09-01"); // Fall starts on September 1st
 			end = dayjs(now.year() + "-11-30"); // Fall ends on November 30th
 		} else {

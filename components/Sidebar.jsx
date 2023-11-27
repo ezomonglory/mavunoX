@@ -3,14 +3,14 @@ import SidebarNav from "./SidebarNav";
 
 const Sidebar = ({ show, setShow, weather }) => {
 	return (
-       <div>
+       <div >
          <div className={`bg-[#000000ad] hidden ${show && "overlay"} fixed top-0 left-0 h-screen w-screen z-[90]`}
          onClick={()=>{
             setShow(false)
          }}
          ></div>
 		<div
-			className={`bg-[#FBFCFB] px-[32px] py-[40px] border border-r-[#E4E4E4] border-transparent h-screen w-[280px]  flex-shrink-0 ${
+			className={`bg-[#FBFCFB] px-[32px] py-[40px] border border-r-[#E4E4E4] border-transparent h-screen w-[280px]  flex-shrink-0 relative ${
 				show ? "sidebarMove" : "sidebar"
 			}`}
 		>
@@ -24,11 +24,14 @@ const Sidebar = ({ show, setShow, weather }) => {
 
 			<div className='flex space-y-[20px] flex-col mt-[40px] '>
 				<SidebarNav text='Dashboard' href='/dashboard' />
-				<SidebarNav text='Chatbot' href='/dashboard' />
+				<SidebarNav text='Chatbot' href='' />
 				<SidebarNav text='My Profile' href='/dashboard/profile' />
-				<SidebarNav text='Settings' href='/dashboard' />
-				<SidebarNav text='Help and Support' href='/dashboard' />
+				<SidebarNav text='Settings' href='' />
+				<SidebarNav text='Help and Support' href='' />
 			</div>
+            <div className="absolute bottom-2 ">
+            <SidebarNav text='Logout' href='/' />
+            </div>
 		</div>
        </div>
 	);

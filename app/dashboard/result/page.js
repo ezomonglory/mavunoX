@@ -22,6 +22,7 @@ import { calculatePlantingDate, formatDate, getSeason } from "@/functions";
 import GradientProgressBar from "@/components/GradientProgressBar";
 import RecMobile from "./RecMobile";
 import RecModal from "./RecModal";
+import dayjs from "dayjs";
 
 const Page = () => {
 	const [data, setData] = useState();
@@ -31,7 +32,154 @@ const Page = () => {
 	const [plantingDate, setPlantingDate] = useState();
 	const [harvestDate, setHarvestDate] = useState();
 	const [showRecMobile, setShowRecMobile] = useState(false);
-    const [showRecModal, setShowRecModal] = useState(false)
+	const [showRecModal, setShowRecModal] = useState(false);
+	const now = dayjs();
+	let start, end;
+
+	const getHarvestDateRange = (season, durationDays) => {
+		const now = dayjs();
+		let start, end;
+
+		// Get the start date for the specified season in the current year
+		if (season === "winter") {
+			start = dayjs(now.year(), "12-01"); // Winter starts on December 1st
+		} else if (season === "spring") {
+			start = dayjs(now.year(), "03-01"); // Spring starts on March 1st
+		} else if (season === "summer") {
+			start = dayjs(now.year(), "06-01"); // Summer starts on June 1st
+		} else if (season === "fall") {
+			start = dayjs(now.year(), "09-01"); // Fall starts on September 1st
+		} else {
+			throw new Error("Invalid season");
+		}
+
+		// If the current month is after the last month of the season, adjust to the next year
+		if (now.isAfter(dayjs(start).endOf("month"))) {
+			start = start.add(1, "year");
+		}
+
+		// Calculate the end date based on the start date and crop duration
+		end = dayjs(start).endOf("month");
+
+		// Check if the current month is within the season
+		if (now.isBefore(dayjs(start).endOf("month"))) {
+			// Calculate the minimum harvest date (current day + duration)
+			const minHarvestDate = now.add(durationDays, "day");
+
+			// Check if the minimum harvest date is after the end of the season
+			if (minHarvestDate.isAfter(end)) {
+				// Return the range for the next occurrence of the season
+				console.log(
+					"Harvest date range:",
+					start.format("YYYY-MM-DD"),
+					"to",
+					end.format("YYYY-MM-DD"),
+				);
+				return getHarvestDateRange(season, durationDays).start.add(1, "year");
+			}
+
+			// Return the range from the current day to the end of the month
+			console.log(
+				"Harvest date range:",
+				start.format("YYYY-MM-DD"),
+				"to",
+				end.format("YYYY-MM-DD"),
+			);
+			return { start: now, end: end };
+		} else {
+			// Return the range for the next occurrence of the season
+			console.log(
+				"Harvest date range:",
+				start.format("YYYY-MM-DD"),
+				"to",
+				end.format("YYYY-MM-DD"),
+			);
+			return getHarvestDateRange(season, durationDays).start.add(1, "year");
+		}
+	};
+
+	function calculateHarvestDate(season, duration) {
+		const currentDate = new Date();
+		let harvestYear = currentDate.getFullYear();
+
+		// Check if the current date has passed the harvest season in the current year
+		const seasonMonths = {
+			spring: [2, 3, 4],
+			summer: [5, 6, 7],
+			rainy: [8, 9, 10],
+			winter: [11, 0, 1], // Months are zero-based in JavaScript Date object
+		};
+
+		const currentMonth = currentDate.getMonth();
+		if (currentMonth > seasonMonths[season][seasonMonths[season].length - 1]) {
+			// If the current month is beyond the specified season, move to the next year
+			harvestYear++;
+		}
+
+		// Calculate the minimum harvest date
+		let minHarvestDate = new Date(currentDate);
+		minHarvestDate.setDate(currentDate.getDate() + duration);
+
+		// Check if the current date is within the allowed months for the season
+		if (!seasonMonths[season].includes(currentMonth)) {
+			// If not, set the date range to the first and last day of the specified season
+			minHarvestDate = new Date(harvestYear, seasonMonths[season][0], 1);
+			const lastMonthDay =
+				seasonMonths[season][seasonMonths[season].length - 1];
+			const maxHarvestDate = new Date(harvestYear, lastMonthDay + 1, 0);
+			return {
+				minHarvestDate: minHarvestDate.toISOString().slice(0, 10),
+				maxHarvestDate: maxHarvestDate.toISOString().slice(0, 10),
+			};
+		}
+
+		// Check if the minimum harvest date is within the allowed months for the season
+		const allowedMonths = seasonMonths[season];
+		while (!allowedMonths.includes(minHarvestDate.getMonth())) {
+			minHarvestDate.setFullYear(harvestYear);
+		}
+
+		// Set the max harvest date to the last day of the specified season
+		const lastMonthDay = seasonMonths[season][seasonMonths[season].length - 1];
+		const maxHarvestDate = new Date(harvestYear, lastMonthDay + 1, 0);
+
+		return {
+			minHarvestDate: new Date(Math.max(currentDate, minHarvestDate))
+				.toISOString()
+				.slice(0, 10),
+			maxHarvestDate: maxHarvestDate.toISOString().slice(0, 10),
+		};
+	}
+
+	const getHarvestDate = (season, duration) => {
+		const currentDate = new Date();
+		let harvestYear = currentDate.getFullYear();
+
+        console.log("hey")
+		const seasonMonths = {
+			spring: [2, 3, 4],
+			summer: [5, 6, 7],
+			rainy: [8, 9, 10],
+			winter: [11, 12, 13],
+		};
+
+        let month;
+		const currentMonth = currentDate.getMonth();
+        if(currentMonth === 0){
+            month = 12
+        } else if (currentMonth === 1){
+            month = 13 
+        } else {
+            month = currentMonth
+        }
+        console.log(month + "month")
+        console.log(seasonMonths[season][seasonMonths[season].length - 1])
+		if (month > seasonMonths[season][seasonMonths[season].length - 1]) {
+			// If the current month is beyond the specified season, move to the next year            
+			const next = harvestYear + 1;
+            console.log(next)
+		}
+	};
 
 	useEffect(() => {
 		const phdata = JSON.parse(window.localStorage.getItem("phData"));
@@ -93,7 +241,7 @@ const Page = () => {
 			console.log(response);
 		} catch (error) {
 			setLoader(false);
-			console.log(error);
+			alert(error);
 		}
 	};
 
@@ -113,6 +261,16 @@ const Page = () => {
 		<div className=' flex justify-center w-full bg-[#F6F5F8] h-full min-h-screen pt-[80px] md:pt-[128px] pb-[94px]'>
 			<Header />
 			<div className='md:w-[90%] xl:w-[70%] mx-auto '>
+				{/* <Btn
+					text='cli'
+					handleClick={() => {
+						console.log("Calll");
+                        getHarvestDate('summer', 10)
+						// const harvestDateRange = getHarvestDate("rainy", 10);
+						// console.log(harvestDateRange);
+					}}
+				/> */}
+
 				<div className='flex space-x-2 bg-white md:bg-transparent py-[12px] px-[16px]'>
 					<Link
 						href='/dashboard'
@@ -147,7 +305,7 @@ const Page = () => {
 					<div className='w-full flex flex-col space-y-[16px]'>
 						<div>
 							<LabelledContainer
-								header='Rice'
+								header={form?.crop}
 								rounded='rounded-t-[8px]'
 								icon={cropResultIcon}
 							>
@@ -218,7 +376,7 @@ const Page = () => {
 								rounded='rounded-t-[8px]'
 								icon={cropPredictionIcon}
 							>
-								{secondData?.temperature && (
+								{!secondData?.temperature && (
 									<div className='bg-[#FCF1E9] p-[8px]  rounded-[4px] '>
 										<h1 className='text-[#8B4513] text-[14px] tracking-[-0.2px] '>
 											Plan your journey with us; Choose your preferred harvest
@@ -293,7 +451,7 @@ const Page = () => {
 									<div
 										className='block  border border-[#049600] rounded-[8px] flex items-center justify-center py-[8px] px-[12px] cursor-pointer '
 										onClick={() => {
-											setShowRecModal(true)
+											setShowRecModal(true);
 										}}
 									>
 										<h1 className='text-[#049600] text-[16px] neue400 leading-[28px] tracking-[-0.16px] '>
@@ -309,7 +467,7 @@ const Page = () => {
 					{/* <GradientProgressBar percentage={40} /> */}
 				</div>
 			</div>
-            {showRecModal && (<RecModal setShowRecModal={setShowRecModal} />)}
+			{showRecModal && <RecModal setShowRecModal={setShowRecModal} />}
 			{loader && <Loader />}
 		</div>
 	);
