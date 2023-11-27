@@ -127,53 +127,33 @@ select {
 	/* Add your additional styling here */
 }
 
-/* styles.css */
 
-/* Custom styles for the date picker container */
-.custom-date-picker {
-	position: relative;
-	display: inline-block;
+
+
+/* Styling the date popup picker */
+.MuiPickersToolbar-root,
+.MuiPickersToolbarText-root, .Mui-selected {
+	background-color: #049600 !important;
+	color: white !important;
+	text-align: center !important;
+	 font-family: 'neue_montrealmedium' !important;
+}
+.MuiTypographyOverline,
+.MuiTypography-overline {
+	color: white !important;
+	text-align: center !important;
+	 font-family: 'neue_montrealmedium'!important;
 }
 
-/* Style the input element */
-.custom-date-picker input[type="date"] {
-	/* Your custom styling for the date input */
-	/* Example: */
-	padding: 0.5rem;
-	border: 1px solid #ccc;
-	border-radius: 0.25rem;
-	outline: none;
-}
-
-/* Style the container for cancel and apply buttons */
-.custom-date-picker .button-container {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 0.5rem;
-}
-
-/* Style the cancel and apply buttons */
-.custom-date-picker .button-container button {
-	/* Your custom styling for the buttons */
-	/* Example: */
-	padding: 0.25rem 0.5rem;
-	background-color: #3490dc;
-	color: #fff;
-	border: none;
-	border-radius: 0.25rem;
-	cursor: pointer;
-}
-
-/* Style the selected date */
-.custom-date-picker input[type="date"]:valid {
-	/* Your custom styling for the selected date */
-	/* Example: */
-	color: green;
+.MuiButton-text{
+    color: #049600;
 }
 
 .scroll-hidden::-webkit-scrollbar {
 	display: none;
 }
+
+
 
 @keyframes moveleft {
 	0% {

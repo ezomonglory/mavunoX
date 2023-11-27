@@ -24,7 +24,7 @@ const Header = () => {
 		<div className='fixed w-full top-0 flex items-center justify-between bg-white pt-[24px] pb-[16px] px-[16px] md:px-[48px]'>
 			<div className='flex space-x-[16px] items-center '>
 				<img
-					src='/images/logo.jpg'
+					src='/images/logo.svg'
 					className='w-[111px] md:w-[150px]'
 					alt='logo'
 				/>
