@@ -77,7 +77,7 @@ html, body{
     font-family: 'neue_montrealmedium';
     src: url('../fonts/neuemontreal-medium-webfont.woff2') format('woff2'),
          url('../fonts/neuemontreal-medium-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 500;
     font-style: normal;
 
 }
@@ -97,13 +97,16 @@ html, body{
 }
 
 
+.neueItalic {
+    font-family: 'neue_montrealmedium_italic';
+}
 
 
 @font-face {
     font-family: 'neue_montrealregular';
     src: url('../fonts/neuemontreal-regular-webfont.woff2') format('woff2'),
          url('../fonts/neuemontreal-regular-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 500;
     font-style: normal;
 
 }
@@ -197,6 +200,7 @@ select {
 	.sidebarMove {
 		animation: moveleft 0.5s ease-in;
 		position: fixed;
+        width:350px;
 		top: 0;
 		left: 0;
 		z-index: 100;

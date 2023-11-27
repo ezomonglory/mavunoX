@@ -14,7 +14,7 @@ const LabelInput = ({ label, placeholder, icon, type, name, handleChange, value 
                     name={name}
                     onChange={(e)=> handleChange(e)}
                     value={value && value}
-					className='border-none outline-none w-full'
+					className='border-none outline-none w-full neue400 text-[14px] tracking-[-0.24px] leading-[22px] '
 				/>
 				<span>{icon}</span>
 			</div>

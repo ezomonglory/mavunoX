@@ -9,7 +9,7 @@ const Dashlayout = ({ children, weather }) => {
 		<div className='flex layout'>
 			<Sidebar show={show} setShow={setShow} weather={weather} />
 			<DashHeader show={show} setShow={setShow} />
-			<div className=' pt-[40px] px-[16px] sm:px-[32px] lg:px-[32px] 2xl:px-[64px] h-screen overflow-auto scroll-hidden padd w-full'>
+			<div className=' pt-[40px] px-[16px] sm:px-[32px] lg:px-[32px] xl:px-[64px] h-screen overflow-auto scroll-hidden padd w-full'>
 				{children}
 			</div>
 		</div>

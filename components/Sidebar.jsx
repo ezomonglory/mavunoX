@@ -10,14 +10,14 @@ const Sidebar = ({ show, setShow, weather }) => {
          }}
          ></div>
 		<div
-			className={`bg-[#FBFCFB] px-[32px] py-[40px] border border-r-[#E4E4E4] border-transparent h-screen w-[292px]  flex-shrink-0 ${
+			className={`bg-[#FBFCFB] px-[32px] py-[40px] border border-r-[#E4E4E4] border-transparent h-screen w-[280px]  flex-shrink-0 ${
 				show ? "sidebarMove" : "sidebar"
 			}`}
 		>
 			<div className='flex space-x-[8px]'>
-				<img src='/images/logo.png' className=' md:w-[126px] ' alt='logo' />
+				<img src='/images/logo.svg' className=' md:w-[126px] ' alt='logo' />
 
-				<div className='text-[#8B4513] neue400 text-[14px] tracking-[-0.2px] leading-[22px] border boder-[#8B4513] rounded-[8px] py-[4px] px-[12px] '>
+				<div className='text-[#8B4513] neueItalic text-[14px] tracking-[-0.2px] leading-[22px] border boder-[#8B4513] rounded-[8px] py-[4px] px-[12px] '>
 					{weather} ‘23
 				</div>
 			</div>

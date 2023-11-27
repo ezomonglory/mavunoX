@@ -8,7 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { downArr } from "@/SVG";
+import { delIcon, downArr, recIcon, verticalIcon, vrIcon } from "@/SVG";
 
 const columns = [
 	{ id: "name", label: "Crop Name " },
@@ -26,6 +26,9 @@ const columns = [
 
 		align: "right",
 		format: (value) => value.toLocaleString("en-US"),
+	},
+	{
+		id: "",
 	},
 ];
 
@@ -66,7 +69,12 @@ export default function StickyHeadTable() {
 
 	return (
 		<Paper
-			sx={{ width: "100%",minWidth:'700px', overflow: "hidden", border: "none" }}
+			sx={{
+				width: "100%",
+				minWidth: "700px",
+				overflow: "hidden",
+				border: "none",
+			}}
 			className='scroll-hidden'
 		>
 			<TableContainer className='scroll-hidden' sx={{ border: "none" }}>
@@ -83,7 +91,7 @@ export default function StickyHeadTable() {
 								>
 									<div className='flex space-x-[4px] items-center'>
 										<h1>{column.label}</h1>
-										<span> {downArr} </span>
+										<span> {column.id === "" ? "" : downArr} </span>
 									</div>
 								</TableCell>
 							))}
@@ -94,16 +102,52 @@ export default function StickyHeadTable() {
 							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((row) => {
 								return (
-									<TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
+									<TableRow role='checkbox' tabIndex={-1} key={row.code}>
 										{columns.map((column) => {
 											const value = row[column.id];
 											if (column.id === "name") {
 												return (
 													<TableCell key={column.id} align={column.align}>
-														<h1 className='neue700 text-[14px] tracking-[-0.1px] leading-[20px] text-[#141414] '>
+														<h1 className='neue500 text-[14px] tracking-[-0.1px] leading-[20px] text-[#141414] '>
 															{" "}
 															{value}{" "}
 														</h1>
+													</TableCell>
+												);
+											} else if (column.id === "") {
+												return (
+													<TableCell key={column.id} align={column.align}>
+														<div className='group relative'>
+															<span
+																className='cursor-pointer'
+																onClick={() => {
+																	console.log("hey");
+																}}
+															>
+																{" "}
+																{verticalIcon}{" "}
+															</span>
+															<div className=' group-hover:block hidden absolute right-0 top-0 bg-white z-30'>
+																<div className='flex space-x-[12px] py-[12px] cursor-pointer hover:bg-gray-100 px-[16px]'>
+																	<span>{vrIcon}</span>
+																	<h2 className='text-[#141414] tracking-[-0.1px] leading-[22px] neue400 text-[14px]'>
+																		View Result
+																	</h2>
+																</div>
+																<div className='flex space-x-[12px] py-[12px] cursor-pointer hover:bg-gray-100 px-[16px]'>
+																	<span>{recIcon}</span>
+																	<h2 className='text-[#141414] tracking-[-0.1px] leading-[22px] neue400 text-[14px]'>
+																		Recommendation
+																	</h2>
+																</div>
+																<div className='flex space-x-[12px] py-[12px] cursor-pointer hover:bg-gray-100 px-[16px]'>
+																	<span>{delIcon}</span>
+																	<h2 className='text-[#141414] tracking-[-0.1px] leading-[22px] neue400 text-[14px]'>
+																		Delete
+																	</h2>
+																</div>
+															</div>
+														</div>
 													</TableCell>
 												);
 											} else if (value === "In Progress") {

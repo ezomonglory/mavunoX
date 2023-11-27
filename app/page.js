@@ -1,6 +1,7 @@
 "use client";
 import Btn from "@/components/Btn";
 import LabelInput from "@/components/LabelInput";
+import PasswordInput from "@/components/Password";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -78,22 +79,22 @@ const Page = () => {
 
 			<div className=' w-full md:w-[50%] px-[16px] md:px-[42px] xl:px-[120px] '>
 				<div className='flex flex-col space-y-[24px]'>
-					<img src='/images/logo.jpg' className='w-[111px] md:w-[154px] ' />
+					<img src='/images/logo.svg' className='w-[111px] md:w-[154px] ' />
 
 					<div>
 						<h1 className='text-[#141414] neue500 leading-[46px] tracking-[-0.5px] text-[30px] md:text-[38px] '>
-							Welcome back
+							Welcome back,
 						</h1>
-						<h2 className='text-[#373737] text-[16px] neue500 tracking-[-0.5px] leading-[24px]'>
+						<h2 className='text-[#373737] text-[16px] neue400 tracking-[-0.5px] leading-[24px]'>
 							{" "}
-							please enter your details.{" "}
+							please enter your details to get started.{" "}
 						</h2>
 					</div>
 
 					<div className='flex flex-col space-y-[20px]'>
 						<LabelInput label='Email' name='email' handleChange={handleChange} />
 						<div>
-							<LabelInput label='Password' type='password' name='password' handleChange={handleChange}  />
+							<PasswordInput label='Password' type='password' name='password' handleChange={handleChange}  />
 							<h2 className='text-[#121212] neue500 leading-[22px] tracking-[-0.1px] text-[14px] mt-[4px] '>
 								Forgot Password?
 							</h2>
